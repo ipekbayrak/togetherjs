@@ -12,6 +12,7 @@ http.createServer(function(request, response) {
 
   fs.exists(filename, function(exists) {
     if(!exists) {
+      console.log("not exist filename: ", filename);
       response.writeHead(404, {"Content-Type": "text/plain"});
       response.write("404 Not Found\n");
       response.end();
@@ -22,12 +23,15 @@ http.createServer(function(request, response) {
 
     fs.readFile(filename, "binary", function(err, file) {
       if(err) {
+        console.log("err filename: ", filename);
         response.writeHead(500, {"Content-Type": "text/plain"});
         response.write(err + "\n");
         response.end();
         return;
       }
 
+        
+      console.log("filename: ", filename);
       response.writeHead(200);
       response.write(file, "binary");
       response.end();
