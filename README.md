@@ -8,6 +8,9 @@ Mustafa Additions
 ```javascript
 // set scroll syncronization 
 window.TogetherJSConfig_scrollSync: false; // default is true
+
+// set navigation scyronization
+window.TogetherJSConfig_navigationSync: false; // default is true
 ```
 
 What is TogetherJS?

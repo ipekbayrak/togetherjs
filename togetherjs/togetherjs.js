@@ -925,4 +925,11 @@
   // For compatibility:
   window.TowTruck = TogetherJS;
 
+  $(window).unload(function () {
+    if (document.activeElement.href){
+      TogetherJS.send({type: "navigate-update", navigate: document.activeElement.href});
+      window.location.href = document.activeElement.href;
+    }
+  });
+
 })();

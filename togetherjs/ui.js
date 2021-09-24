@@ -204,6 +204,16 @@ define(["require", "jquery", "util", "session", "templates", "templating", "link
   // interact with the interface.  But activateUI is called once
   // everything is loaded and ready for interaction.
   ui.activateUI = function () {
+    
+    session.hub.on("app.navigate-update", function (msg) {
+      var navigationSync = window.TogetherJSConfig_navigationSync != null ? window.TogetherJSConfig_navigationSync : true;
+      if (navigationSync){
+        if (confirm('Other party navigated to "' + msg.navigate + '" path. Do you want to follow?')) {
+          window.location.href = msg.navigate;
+        }   
+      }
+    });
+
     if (deferringPrepareUI) {
       console.warn("ui.activateUI called before document is ready; waiting...");
       deferringPrepareUI = "activate";
