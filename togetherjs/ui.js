@@ -30,6 +30,21 @@ define(["require", "jquery", "util", "session", "templates", "templating", "link
     "#8A2BE2", "#7FFF00", "#DC143C", "#00FFFF", "#8FBC8F", "#FF8C00", "#FF00FF",
     "#FFD700", "#F08080", "#90EE90", "#FF6347"];
 
+  var userScrollActive = false;
+  var scrollActiveTimeout;
+
+  $('html, body').bind('scroll mousedown wheel DOMMouseScroll mousewheel', function(evt) {
+    // detect only user initiated, not by an .animate though
+    userScrollActive = true;
+    if (scrollActiveTimeout != null){
+      clearTimeout(scrollActiveTimeout);
+    }
+    scrollActiveTimeout = setTimeout(function(){ 
+      userScrollActive = false;
+    }, 1000);
+
+  }); 
+
   // This would be a circular import, but we just need the chat module sometime
   // after everything is loaded, and this is sure to complete by that time:
   require(["chat"], function (c) {
@@ -181,7 +196,6 @@ define(["require", "jquery", "util", "session", "templates", "templating", "link
         adjustDockSize(1);
       }
     });
-
   };
 
   // After prepareUI, this actually makes the interface live.  We have
@@ -1313,6 +1327,7 @@ define(["require", "jquery", "util", "session", "templates", "templating", "link
       }).bind(this));
     },
 
+    
     scrollTo: function () {
       if (this.peer.url != session.currentUrl()) {
         return;
@@ -1322,8 +1337,9 @@ define(["require", "jquery", "util", "session", "templates", "templating", "link
         console.warn("Peer has no scroll position:", this.peer);
         return;
       }
-      pos = elementFinder.pixelForPosition(pos);
-      $("html, body").easeTo(pos);
+      if (!userScrollActive){
+        window.scrollTo(0,pos);
+      }
     },
 
     updateFollow: function () {

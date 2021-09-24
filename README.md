@@ -1,6 +1,15 @@
 TogetherJS - Surprisingly easy collaboration
 ============================================
 
+
+Mustafa Additions
+-----------------
+
+```javascript
+// set scroll syncronization 
+window.TogetherJSConfig_scrollSync: false; // default is true
+```
+
 What is TogetherJS?
 -----------------
 

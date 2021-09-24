@@ -307,37 +307,15 @@ define(["jquery", "ui", "util", "session", "elementFinder", "tinycolor", "eventM
     return canvas[0].toDataURL("image/png");
   }
 
-  var scrollTimeout = null;
-  var scrollTimeoutSet = 0;
-  var SCROLL_DELAY_TIMEOUT = 75;
-  var SCROLL_DELAY_LIMIT = 300;
-
   function scroll() {
-    var now = Date.now();
-    if (scrollTimeout) {
-      if (now - scrollTimeoutSet < SCROLL_DELAY_LIMIT) {
-        clearTimeout(scrollTimeout);
-      } else {
-        // Just let it progress anyway
-        return;
-      }
-    }
-    scrollTimeout = setTimeout(_scrollRefresh, SCROLL_DELAY_TIMEOUT);
-    if (! scrollTimeoutSet) {
-      scrollTimeoutSet = now;
-    }
+    _scrollRefresh();
   }
 
   var lastScrollMessage = null;
   function _scrollRefresh() {
-    scrollTimeout = null;
-    scrollTimeoutSet = 0;
-    Cursor.forEach(function (c) {
-      c.refresh();
-    });
     lastScrollMessage = {
       type: "scroll-update",
-      position: elementFinder.elementByPixel($(window).scrollTop())
+      position: window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop
     };
     session.send(lastScrollMessage);
   }
@@ -352,7 +330,8 @@ define(["jquery", "ui", "util", "session", "elementFinder", "tinycolor", "eventM
 
   session.hub.on("scroll-update", function (msg) {
     msg.peer.scrollPosition = msg.position;
-    if (msg.peer.following) {
+    var scrollSync = window.TogetherJSConfig_scrollSync != null ? window.TogetherJSConfig_scrollSync : true;
+    if (scrollSync) {
       msg.peer.view.scrollTo();
     }
   });
