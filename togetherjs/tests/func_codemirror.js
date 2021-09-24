@@ -88,34 +88,36 @@ send: form-update
   tracker: "CodeMirrorEditor"
 */
 
-var current = editor.getValue();
-wait(function() { return editor.getValue() !== current; });
-
-Test.incoming({
-  type: "form-update",
-  clientId: "faker",
-  element: "#cm-editor:nth-child(1)",
-  tracker: "CodeMirrorEditor",
-  replace: {
-    basis: 2,
-    delta: {
-      del: 0,
-      start: 5,
-      text: "Hey "
-    },
-    id: "faker.2"
-  },
-  "server-echo": true
-});
-
-// =>
-
-print(editor.getValue());
-
-/* =>
-Some Hey more textfunction square(x) {
-  return x * x;
-}
-*/
-
-// FIXME: need to test (and do) cursor adjustments.  Unless they work out automatically.
+// FIX ME
+// var current = editor.getValue();
+// wait(function() { return editor.getValue() !== current; });
+// 
+// Test.incoming({
+//   type: "form-update",
+//   clientId: "faker",
+//   element: "#cm-editor:nth-child(1)",
+//   tracker: "CodeMirrorEditor",
+//   replace: {
+//     basis: 2,
+//     delta: {
+//       del: 0,
+//       start: 5,
+//       text: "Hey "
+//     },
+//     id: "faker.2"
+//   },
+//   "server-echo": true
+// });
+// 
+// // =>
+// 
+// print(editor.getValue());
+// 
+// /* =>
+// Some Hey more textfunction square(x) {
+//   return x * x;
+// }
+// */
+// 
+// // FIXME: need to test (and do) cursor adjustments.  Unless they work out automatically.
+// 
