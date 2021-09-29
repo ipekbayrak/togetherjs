@@ -1,0 +1,76 @@
+
+    <button id="clickButton" style=" opacity: 1; ">Start CoBrowsing</button>
+
+    <script>
+      TogetherJSConfig_findRoom = {prefix: "togetherjstodo", max: 5};
+      TogetherJSConfig_autoStart = true;
+      TogetherJSConfig_suppressJoinConfirmation = true;
+      TogetherJSConfig_storagePrefix = "tjs_todo";
+    </script>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <script src="https://sdk-cdn.mypurecloud.com/javascript-guest/4.1.0/purecloud-guest-chat-client.min.js"></script>
+    <script>
+      var require_g = require;
+      require =null;
+    </script>
+    <script src="guestdemo.js"></script>
+    <script src="/togetherjs.js"></script>
+
+    <script>
+
+
+
+(function() {
+          
+      var selectedParameters = {
+              organizationId : '327d10eb-0826-42cd-89b1-353ec67d33f8',
+              deploymentId : 'c2eaaa5c-d755-4e51-9136-b5ee86b92af3',
+              videoengagerUrl : 'https://dev.videoengager.com/',
+              tennantId : 'test_tenant',
+              environment : 'mypurecloud.com.au',
+              queue : "video",
+      }
+
+      var customerName = function() {
+          return "Customer " + Math.floor(Math.random() * 10 + 1);
+      }
+
+      var setVE = function(){
+          let videoengagerUrl;
+          let url = window.location.href;
+          if(url.indexOf("test-url=5fc9") == -1) {
+            videoengagerUrl = 'https://videome.leadsecure.com/';
+          } else {
+            videoengagerUrl = 'https://test.videoengager.com/';
+          }
+          videoengager.setVideoengagerUrl(videoengagerUrl);
+
+        videoengager.setFirstName("mustafa");
+        videoengager.setLastName("ipekbayrak");
+        videoengager.setDisplayName(customerName());
+        videoengager.setOrganizationId(selectedParameters.organizationId);
+        videoengager.setDeploymentId(selectedParameters.deploymentId);
+        videoengager.setVideoengagerUrl(selectedParameters.videoengagerUrl);
+        videoengager.setTenantId(selectedParameters.tennantId);
+        videoengager.setEnvironment(selectedParameters.environment);
+        videoengager.setQueue(selectedParameters.queue);
+        videoengager.setCoBrowseURL(window.TogetherJS.shareUrl());
+      }
+      
+      videoengager.setButtonStartLabel('start cobrowse');
+      videoengager.setButtonEndLabel('Stop');
+
+      videoengager.startButtonPressed(() => {
+        setVE();
+      });
+
+      videoengager.onError((err) => {
+        console.error(err);
+      });
+      
+      videoengager.init();
+    })();
+    </script>
+  </body>
+</html>

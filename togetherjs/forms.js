@@ -56,6 +56,13 @@ define(["jquery", "util", "session", "elementFinder", "eventMaker", "templating"
       type: "form-update",
       element: location
     };
+    if (el.context.getAttribute("dontTrack") != null ){
+      var dontTrack = el.context.getAttribute("dontTrack");
+      if (dontTrack === "true"){
+        return;
+      }
+    }
+
     if (isText(el) || tracker) {
       var history = el.data("togetherjsHistory");
       if (history) {

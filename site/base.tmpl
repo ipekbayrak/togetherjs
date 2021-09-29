@@ -28,8 +28,6 @@
     <!-- retina library -->
     <script src="{{ base }}js/retina.js"></script>
 
-    <script src="//mozorg.cdn.mozilla.net/tabzilla/tabzilla.js"></script>
-
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', '{{ GA_ACCOUNT }}']);
@@ -48,7 +46,6 @@
     <link href="{{ base }}css/carousel.css" rel="stylesheet">
     <link href="{{ base }}css/grid.css" rel="stylesheet">
     <link href="{{ base }}css/style.css" rel="stylesheet">
-    <link href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" />
 
     {% block styles %}{% endblock %}
 
@@ -76,9 +73,6 @@
   </head>
   <body {% block body_tag %}{% endblock %}>
     <div class="navbar main-header" id="main-navbar">
-
-      <!-- Tabzilla -->
-      <a href="https://www.mozilla.org/" id="tabzilla">mozilla</a>
 
       <!-- start container -->
       <div class="container navbox">

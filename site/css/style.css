@@ -154,22 +154,6 @@ h5 {
   box-shadow: none;
 }
 
-/* =Tabzilla
------------------------------------------------ */
-#tabzilla-panel,
-#tabzilla-panel *,
-#tabzilla-panel *:before,
-#tabzilla-panel *:after {
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
-
-#tabzilla-panel a {
-  font-size: 11px;
-  line-height: 12px;
-}
-
-
 /* =Header
 ----------------------------------------------- */
 
@@ -865,10 +849,6 @@ h5 {
     margin: 26px;
   }
 
-  a#tabzilla {
-    display: none;
-  }
-
   .how-section-imganim-01 {
     top: 26%;
   }
@@ -1005,10 +985,6 @@ h5 {
     margin: 26px;
   }
 
-  a#tabzilla {
-    display: inherit;
-  }
-
   #footer a img {
     width: 100px;
     height: 17px;
@@ -1071,10 +1047,6 @@ h5 {
 
   #marketing-video #frame-video {
     margin: 0 auto;
-  }
-
-  a#tabzilla {
-    display: inherit;
   }
 
   #footer a img {
