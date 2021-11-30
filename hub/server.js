@@ -173,7 +173,7 @@ function startServer (port, host, relativePath) {
   let parseUrl = require('url').parse;
   const server = http.createServer(function (request, response) {
     const parsedURL = request.url.substring(0, request.url.indexOf('?'));
-    const pathName = parsedURL + relativePath;
+    const pathName = parsedURL.substring(relativePath.length, parsedURL.length);
 
     if (pathName === '/status') {
       response.end('OK');
